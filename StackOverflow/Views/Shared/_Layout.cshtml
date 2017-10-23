@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/Style.css">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+	  <li class="navbarbrand">@Html.ActionLink("StackOverflow", "Index", "Home")</li>
+	  <li>@Html.ActionLink("Users","Index","User")</li>
+      <li>@Html.ActionLink("Questions","Index","Question")</li>
+      <li>@Html.ActionLink("Jobs", "Index", "Developer Job")</li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+     <!-- <li class="glyphicon glyphicon-user">@Html.ActionLink("SignUp","SignUp","User")</li>
+      <li class="glyphicon glyphicon-log-in">@Html.ActionLink("Login","Login", "User")</li>-->
+				
+      <li>@Html.ActionLink("SignUp","SignUp","User")</li>
+      <li>@Html.ActionLink("Login","Login","User")</li>		
+    </ul>
+  </div>
+</nav>
+	<div>
+        @RenderBody()
+    </div>
+</body>
+

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<StackOverflow.Models.ApplicationUser>
+
+<div class="well">
+    <h2>Users of StackOverflow</h2>
+    <hr/>
+
+    @if (Model.Any())
+    {
+        <ul>
+            @foreach (var user in Model)
+            {
+                <li>@Html.DisplayFor(x => user.UserName)</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No Users!</p>
+    }cd 
+
+    @Html.ActionLink("Back", "Index", "Home")
+</div>
