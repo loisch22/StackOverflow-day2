@@ -10,10 +10,27 @@ namespace StackOverflow.Models
     public class Job
     {
         [Key]
-        public int JobId { get; }
+        public int JobId { get; set; }
         public string JobName { get; set; }
         public string JobDescription { get; set; }
-        public virtual int Id { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
+        public override bool Equals(System.Object otherJob)
+        {
+            if (!(otherJob is Job))
+            {
+                return false;
+            }
+            else
+            {
+                Job newJob = (Job)otherJob;
+                return this.JobId.Equals(newJob.JobId);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.JobId.GetHashCode();
+        }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model StackOverflow.Models.Job
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Job Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>Job Title : @Html.DisplayFor(m => m.JobName)</p>
+<hr/>
+<p>@Html.DisplayFor(m => m.JobDescription)</p>
+<hr/>
+<p>@Html.DisplayFor(m => Model.User.UserName)</p>
+
+
+@Html.ActionLink("Back To Jobs", "Index");
+

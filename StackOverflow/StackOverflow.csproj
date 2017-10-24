@@ -13,6 +13,8 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Views\Question\" />
+    <Folder Include="Views\Job\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<StackOverflow.Models.ApplicationUser>
 
+@{
+    ViewData["Title"] = "Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <div class="well">
     <h2>Users of StackOverflow</h2>
     <hr/>
@@ -16,7 +21,7 @@
     else
     {
         <p>No Users!</p>
-    }cd 
+    }
 
     @Html.ActionLink("Back", "Index", "Home")
 </div>

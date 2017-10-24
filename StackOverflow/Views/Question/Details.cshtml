@@ -1,0 +1,16 @@
+﻿@model StackOverflow.Models.Question
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>Topic : @Html.DisplayFor(m => m.Topic)</p>
+<hr/>
+<p>@Html.DisplayFor(m => m.QuestionDescription)</p>
+<hr/>
+<p>@Html.DisplayFor(m => Model.User.UserName)</p>
+
+
+@Html.ActionLink("Back To Questions", "Index");

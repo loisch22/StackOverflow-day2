@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using StackOverflow.ViewModels;
 using StackOverflow.Models;
+using System.Text.RegularExpressions;
 
 namespace StackOverflow.Controllers
 {
@@ -17,6 +18,7 @@ namespace StackOverflow.Controllers
 
         public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext db)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
         }
@@ -30,11 +32,15 @@ namespace StackOverflow.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel model)
         {
             var user = new ApplicationUser { UserName = model.Email };
-            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            IdentityResult createResult = await _userManager.CreateAsync(user, model.Password);
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager
+               .PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
@@ -44,10 +50,12 @@ namespace StackOverflow.Controllers
                 return View();
             }
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -67,7 +75,7 @@ namespace StackOverflow.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

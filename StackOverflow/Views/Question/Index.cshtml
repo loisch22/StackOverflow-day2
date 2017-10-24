@@ -1,0 +1,17 @@
+﻿@model IEnumerable<StackOverflow.Models.Question>
+
+@{
+    ViewData["Title"] = "Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Questions</h3>
+
+@foreach (var question in Model)
+{
+    <li>@Html.DisplayFor(m => question.Topic) |
+	    @Html.ActionLink("Details", "Details", new { id = question.QuestionId})
+    </li>
+}
+<h3>@Html.ActionLink("Ask Question", "Create")</h3>
+<p>@Html.ActionLink("Back to questions", "Index")</p>

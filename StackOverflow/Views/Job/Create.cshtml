@@ -1,0 +1,31 @@
+﻿@model StackOverflow.Models.Job
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Create Job";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Hello @User.Identity.Name! Post a Job</h3>
+
+    @using (Html.BeginForm("Create", "Job"))
+    {
+        <p>@Html.LabelFor(m => m.JobName)</p>
+        <p>@Html.EditorFor(m => m.JobName)</p>
+
+        <p>@Html.LabelFor(m => m.JobDescription)</p>
+        <p>@Html.TextAreaFor(m => m.JobDescription)</p>
+
+        @Html.HiddenFor(m => m.JobId)
+        @Html.HiddenFor(m => m.ApplicationUser.Id)
+      
+        <input type="submit" class="btn btn-default" value="Create"/>
+    }
+}
+else
+{
+    <p>@Html.ActionLink("Sign up", "SignUp", "User")</p>
+    <p>@Html.ActionLink("Log in", "Login")</p>
+}
