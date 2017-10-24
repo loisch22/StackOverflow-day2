@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StackOverflow.Migrations
 {
-    public partial class TableAnswer : Migration
+    public partial class AnswersToQuestions : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

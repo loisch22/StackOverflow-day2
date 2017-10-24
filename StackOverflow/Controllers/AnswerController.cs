@@ -8,48 +8,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackOverflow.Models;
 
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace StackOverflow.Controllers
 {
-    public class QuestionController : Controller
+    public class AnswerController : Controller
     {
+
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public QuestionController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, ApplicationDbContext db)
+        public AnswerController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Create(int id)
         {
-            return View(_db.Questions.ToList());
-        }
-
-        public IActionResult Details(int id)
-        {
-            var thisQuestion = _db.Questions
-                                  .Include(m => m.User)
-                                  .Include(y=>y.Answers)
-                                  .FirstOrDefault(m => m.QuestionId == id);
-            return View(thisQuestion);
-        }
-        public IActionResult Create()
-        {
+            ViewBag.question = _db.Questions.FirstOrDefault(x => x.QuestionId == id);
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Question thisQuestion)
+        public async Task<IActionResult> Create(Answer answer)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            thisQuestion.User = currentUser;
-            _db.Questions.Add(thisQuestion);
+            answer.User = currentUser;
+            _db.Answers.Add(answer);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Question", new { id = answer.QuestionId });
         }
     }
 }

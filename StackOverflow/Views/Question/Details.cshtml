@@ -13,4 +13,13 @@
 <p>@Html.DisplayFor(m => Model.User.UserName)</p>
 
 
-@Html.ActionLink("Back To Questions", "Index");
+<h4>Answers:</h4>
+@foreach (var answer in Model.Answers)
+{
+    <li>@Html.DisplayFor(m => answer.Description)</li>
+}
+
+
+@Html.ActionLink("Back To Questions", "Index")
+<br>
+@Html.ActionLink("Answer", "Create", "Answer", new { id = Model.QuestionId})

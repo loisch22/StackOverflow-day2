@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StackOverflow.Models;
 
 namespace StackOverflow.Controllers
@@ -40,6 +41,12 @@ namespace StackOverflow.Controllers
             _db.Jobs.Add(job);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            var thisJob = _db.Jobs.Include(m => m.User)
+                                  .FirstOrDefault(m => m.JobId == id);
+            return View(thisJob);
         }
     }
 }

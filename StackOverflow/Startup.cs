@@ -49,6 +49,8 @@ namespace StackOverflow
             }
             app.UseIdentity();
 
+            app.UseStaticFiles();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

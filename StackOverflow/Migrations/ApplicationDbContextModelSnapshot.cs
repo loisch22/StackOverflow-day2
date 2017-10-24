@@ -229,15 +229,15 @@ namespace StackOverflow.Migrations
                     b.Property<int>("QuestionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("QuestionDescription");
 
                     b.Property<string>("Topic");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("QuestionId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Questions");
                 });
@@ -282,7 +282,7 @@ namespace StackOverflow.Migrations
             modelBuilder.Entity("StackOverflow.Models.Answer", b =>
                 {
                     b.HasOne("StackOverflow.Models.Question", "Question")
-                        .WithMany()
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -300,9 +300,9 @@ namespace StackOverflow.Migrations
 
             modelBuilder.Entity("StackOverflow.Models.Question", b =>
                 {
-                    b.HasOne("StackOverflow.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("StackOverflow.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("UserId");
                 });
         }
     }

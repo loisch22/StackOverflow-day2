@@ -15,6 +15,8 @@
     <Folder Include="Views\User\" />
     <Folder Include="Views\Question\" />
     <Folder Include="Views\Job\" />
+    <Folder Include="Views\Answer\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <ItemGroup>

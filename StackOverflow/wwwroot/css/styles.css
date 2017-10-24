@@ -1,0 +1,15 @@
+﻿.logoff {
+    border: none;
+    background:none;
+    color: grey;
+    padding:15px;
+}
+.user-nav {
+    padding-top: 15px;
+    color: grey;
+}
+
+.logoff:hover, .user-nav:hover {
+    color: #ffffff;
+    cursor:pointer;
+}

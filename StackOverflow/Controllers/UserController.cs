@@ -71,6 +71,12 @@ namespace StackOverflow.Controllers
                 return View();
             }
         }
+
+        //public IActionResult LogOff()
+        //{
+        //    return View("Index", "Home");
+        //}
+
         [HttpPost]
         public async Task<IActionResult> LogOff()
         {

@@ -4,14 +4,20 @@
     ViewData["Title"] = "Jobs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h3>Jobs</h3>
-
-@foreach (var job in Model)
+@if(Model != null)
 {
-    <li>@Html.DisplayFor(m => job.JobName) |
-        @Html.ActionLink("Details", "Details", new { id = job.JobId})
-    </li>
+    <h3>Jobs</h3>
+
+    @foreach (var job in Model)
+    {
+        <li>@Html.DisplayFor(m => job.JobName) |
+             @Html.ActionLink("Details", "Details", new { id = job.JobId})
+        </li>
+    }
+}
+else
+{
+    <h3>Sorry no Jobs Available</h3>
 }
 <h3>@Html.ActionLink("Post a Job", "Create")</h3>
 <p>@Html.ActionLink("Back to Jobs", "Index")</p>
